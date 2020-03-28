@@ -1,0 +1,58 @@
+# =============================================================================
+# import Levenshtein
+# a=Levenshtein.distance('Koundinya','Koundinya')
+# print(a)
+# =============================================================================
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics.pairwise import euclidean_distances
+
+import numpy as n
+
+corpus=['''Excellence is never an accident. It is always the result of high 
+        intention, sincere effort, and intelligent execution; it represents the 
+        wise choice of many alternatives - choice, not chance, determines 
+        your destiny.''',
+        
+      '''You don't have to see the whole staircase, just take the first step.''',
+       
+      '''Watch your thoughts, they become words. Watch your words, they
+      become actions. Watch your actions, they become habit.''',
+      
+     '''The happiness of your life depends upon the quality of your thoughts.''',
+     
+     
+     '''Do more than belong: participate. Do more than care: help. Do more than 
+     believe: practice. Do more than be fair: be kind. Do more than forgive: 
+         forget. Do more than dream: work.''',
+    
+  
+  '''Keep away from people who try to belittle your ambitions. Small people 
+  always do that, but the really great make you feel that you, too, can become 
+  great.''',
+    
+  
+  
+    '''If you don't go after what you want, you'll never have it. If you don't 
+    ask, the answer is always no. If you don't step forward, you're always in 
+    the same place.''',
+    
+      
+      ]
+#vec1=n.array([[9,10,2,4]])
+#vec2=n.array([[1,1,1,1]])
+
+vec1=CountVectorizer()
+vec2=vec1.fit_transform(corpus).todense()
+print(vec2)
+#vec1.fit(corpus)
+#vec2=vec1.transform(corpus)
+for i in vec2:
+    print('Distance: ',euclidean_distances(vec2[0],i))
+    print('Similarity: ',(1-euclidean_distances(vec2[0],i)))
+    print('\n')
+    #print(cosine_similarity(vec2))    
+
+#print('Cosine Similarity: ',cosine_similarity(vec1,vec2))
+#print('cosine distance: ',(1-cosine_similarity(vec1,vec2)))
